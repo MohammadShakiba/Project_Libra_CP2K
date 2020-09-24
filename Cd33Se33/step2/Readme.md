@@ -43,7 +43,7 @@ The standard sample bash file for submitting the calculations and running the Py
 
 `job_init_step`, `nsteps_this_job`, `njob`: Please leave these variables as they are. The program will automatically recognize and fill them.
 
-Now that we have set some of the variables we need to run the python code as `python -c`. The variables required for that are as follows:
+Now that we have set some of the variables we need to run the python code as `python -c`. First we need to import the function `step2_many_body` from `libra_py.workflows.nbra`. Then we have to set up some variables as a dictionary in `params`. The variables in `params` are as follows:
 
 
 
