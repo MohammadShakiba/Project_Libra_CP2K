@@ -23,4 +23,30 @@ In the `&MO_CUBES` section the number of occupied and unoccupied orbitals must b
 
 ## 2. Bash file for running the calculations for one job
 
-The standard sample bash file for submitting the calculations through `slurm` and `sbatch` for running the Python code here is the `submit_template.slm`.
+The standard sample bash file for submitting the calculations and running the Python code through `slurm` and `sbatch` is the `submit_template.slm`. First one should load all needed modules including the modules required for loading CP2K. This file contains the input variables required for calculations of the overlap matrices and NACs. We list the variables as follows:
+
+`nprocs`: The number of processors used for calculations. Note that the same number of processors should be specified in the `#SBATCH --ntasks-per-node` above.
+
+`cp2k_exe`: The executable CP2K or the full path to executable CP2K folder.
+
+`res`: The directory for storing the overlap matrices and NACs.
+
+`min_band`: The minimum KS orbital index to be considered.
+
+`max_band`: The maximum KS orbital index to be considered.
+
+`ks_orbital_homo_index`: The HOMO index for KS orbitals.
+
+`MO_images_directory`: The directory where the molecular orbital isosurfaces images are stored.
+
+`states_to_be_plotted`: The index of the states to be plotted by VMD. If there are many states considered for plotting they should be separated by comma.
+
+`job_init_step`, `nsteps_this_job`, `njob`: Please leave these variables as they are. The program will automatically recognize and fill them.
+
+Now that we have set some of the variables we need to run the python code as `python -c`. The variables required for that are as follows:
+
+
+
+
+
+
