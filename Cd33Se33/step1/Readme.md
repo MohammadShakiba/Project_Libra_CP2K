@@ -6,6 +6,10 @@ The files herre contain the inputs required to run the molecular dynamics (MD) i
 `POTENTIAL` file contains the pseudopotentials for each element.
 `dftd3.dat` file contains infomation for considering the van der Waals forces.
 
-To run the MD you can add the following command to your pbs/slurm file:
+Executing CP2K is dependent on the compiled version. You need to load it through use of `module load` or specify the path to the executable CP2K:
+
+`export PATH=/full/path/to/executable/cp2k/folder:$PATH`
+
+Here is an example of how to run the MD. The following can be added to your pbs/slurm file for submission:
 
 `mpirun -np 16 cp2k.popt -i cp2k_MD_Cd33Se33.inp -o output_cp2k_MD_Cd33Se33.log`
