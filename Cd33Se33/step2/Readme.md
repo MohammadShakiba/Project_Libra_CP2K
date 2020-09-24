@@ -12,7 +12,9 @@ and PDOS files. We recommend the use of the above input template and if the user
 Other required files for running the CP2K input file are basis set and pseudopotential files or any other files required to run the calculations, such as `dftd3.dat`. The full path to these files in the `cp2k_input_template.inp` file shoud be specified.
 
 For `TDDFPT` section the number of excited states are specified. Higher number of excited states needs higher computational cost, and also one needs to specify the cube files to be printed for higher number of KS states. For more information about TD-DFPT calculations please refer to the following links:
+
 [CP2K paper](https://aip.scitation.org/doi/pdf/10.1063/5.0007045)
+
 [Difference between TD-DFT and TD-DFPT](https://groups.google.com/g/cp2k/c/xj8udnSyeEI)
 
 The keyword `RESTART` increase the speed of calculations, both for SCF and TD-DFPT calculations. Therefore, the `RESTART` is required to be set to `.TRUE.` in `TDDFPT` section. Also, the `WFN_RESTART_FILE_NAME` in this section should exist with a random `tdwfn` file name. The same is also needed in the `FORCE_EVAL` section. `WFN_RESTRAT_FILE_NAME` should exist in the input with an random `wfn` file name. 
