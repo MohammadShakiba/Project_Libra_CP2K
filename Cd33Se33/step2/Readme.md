@@ -99,4 +99,9 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 Finally, we run the calculations using the `step2_many_body.run_step2_many_body( params )` for the parameters we have set into `params` dictionary variable.
 
+## 3. Split the trajectory into smaller ones and spread them using `run.py`
+
+
+
+
 
