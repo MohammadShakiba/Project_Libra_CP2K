@@ -16,4 +16,9 @@ We first set up the paramters for reading/sorting the data. The time step is def
 
 `istates`: The initial excited states as in the `namd.py` file. This input is also required to identify the output files by NAD calculations.
 
-`r_squared_tol`: Here we only consider the fits that have an $R^2$ factor of larger than a specific value. This value is defined by `r_squared_tol`.
+`r_squared_tol`: Here we only consider the fits that have an R squared factor of larger than a specific value. This value is defined by `r_squared_tol`.
+
+After fitting, we obtain the average and the standard deviation value of all fitted data. Then, we use the margin of error for a sample proportion as is shown [here](https://barbatti.org/2018/04/18/how-many-trajectories-should-i-run/).
+
+
+
