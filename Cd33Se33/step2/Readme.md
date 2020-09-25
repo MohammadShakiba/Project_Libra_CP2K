@@ -39,6 +39,8 @@ The standard sample bash file for submitting the calculations and running the Py
 
 `MO_images_directory`: The directory where the molecular orbital isosurfaces images are stored.
 
+`path_to_tcl_file`: The path to the `tcl` file for plotting the cube files. This file is fed to VMD for plotting the cube files. The file can be different according to the user need. Here we have uploaded a sample file for our purpose as `cube.tcl`.
+
 `states_to_be_plotted`: The index of the states to be plotted by VMD. If there are many states considered for plotting they should be separated by comma.
 
 `job_init_step`, `nsteps_this_job`, `njob`: Please leave these variables as they are. The program will automatically recognize and fill them.
@@ -71,9 +73,9 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 `ks_orbital_homo_index`: The index of the HOMO energy level in the KS basis. This will take the above value as `$ks_orbital_homo_index`.
 
-`do_phase_corrections`: 
+`do_phase_corrections`: The flag to perform phase correction. If this value is set to **`1`**, the program will apply the [phase correction algorithm](https://pubs.acs.org/doi/abs/10.1021/acs.jpclett.8b02826) to the overlap matrices.
 
-`perform_state_reordering`
+`perform_state_reordering`: This flag will 
 
 `do_state_reordering`
 
