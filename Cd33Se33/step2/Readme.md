@@ -63,7 +63,7 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 `tolerance`: The tolerance factor will consider the excited states which the square of their configuration interaction coefficient is larger than this value.
 
-`isUKS`: If this flag is set to **`1`**, then the program will consider the unrestricted spin calculations. If it is set to other values it will consider only the spin restricted case. Please, make sure for the `UKS .TRUE.` in the `cp2k_input_template.inp` if you have set this variable to `**1**`.
+`isUKS`: If this flag is set to **`1`**, then the program will consider the unrestricted spin calculations. If it is set to other values it will consider only the spin restricted case. Please, make sure for the `UKS .TRUE.` in the `cp2k_input_template.inp` if you have set this variable to **`1`**.
 
 `min_band`: The minimum state index of the KS states. This will take the above value as `$min_band`.
 
@@ -71,6 +71,32 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 `ks_orbital_homo_index`: The index of the HOMO energy level in the KS basis. This will take the above value as `$ks_orbital_homo_index`.
 
+`do_phase_corrections`: 
 
+`perform_state_reordering`
+
+`do_state_reordering`
+
+`state_reordering_alpha`
+
+`istep`
+
+`nsteps_this_job`
+
+`njob`
+
+`res_dir`
+
+`dt`
+
+`do_cube_visualization`
+
+`path_to_tcl_file`
+
+`states_to_be_plotted`
+
+`MO_images_directory`
+
+`step2_many_body.run_step2_many_body( params )`
 
 
