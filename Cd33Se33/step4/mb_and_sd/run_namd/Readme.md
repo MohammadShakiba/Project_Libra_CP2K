@@ -42,11 +42,33 @@ We first divide the trajectory up into sub-trajectories. These are to be consdie
 
 Then For each initial condition that we have set up we perform NAD. For each sub-trajectory the input variables are defined as follows:
 
-`params["T"]`: Temperature                  = 300.0
-    params["ntraj"]              = 250
-    params["sh_method"]          = 1
-    params["Boltz_opt"]          = 1
+`params["T"]`: The temperature of the system.
+    
+`params["ntraj"]`: Number ofsurface hopping stochastic realizations.
 
-    params["nsteps"] = subtraj_len
-    params["init_times"] = [0]
+`params["sh_method"]`: The surface hopping method.
+
+`params["Boltz_opt"]`: 
+
+`params["nsteps"]`: The number of steps for this dynamics which is set to `subtraj_len`.
+ 
+ `params["init_times"]`: The starting time for the dynamics in the current sub-trajectory.
+ 
+ `params["istate"]`: The initial excited state to start from. This parameter is set with the parameter `istates` list.
+ 
+ `params["decoherence_method"]`: The decoherence method to be considered. 
+ 
+ `params["outfile"]`: The surface hopping output.
+ 
+ `params["nstates"]`: The total number of states to be considered.
+ 
+ Then, the NAD is run through `step4.run(hvib, params)`. Here we use the `step4.run( [ hvib_mb_subtrajs[ subtraj ] ], params)` for each sub-trajectory. The first parameter of the `step4.run` are the `Hvib`s which should be represented as a list of lists.
+ 
+ We run the NAD through the last lines of the code. Since we have defined the NAD run for each sub-trajectory in the `myfun` function we can un it through use of multiprocessing library of Python with the command `pool.map`. First we create a pool of processors using `pool.map(nprocs)`. Then, we run the `myfun` function for a set of variables, which here are the subtrajectories and the list of variables becomes `list(range(nsubtrajs))`, using `pool.map( myfunc, list(range(nsubtrajs)) )`. Finally, after running each function is done we close the pool to stop overflow of the computing system using `pool.close()` and `pool.join()`.
+ 
+ 
+ 
+ 
+ 
+ 
 
