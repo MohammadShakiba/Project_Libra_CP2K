@@ -43,8 +43,8 @@
       &END
     &END PRINT
 
-    BASIS_SET_FILE_NAME /panasas/scratch/grp-alexeyak/brendan/w_Mohammad/Libra_cp2k_project_repository/Project_Libra_CP2K/Cd33Se33/step2/BASIS_MOLOPT
-    POTENTIAL_FILE_NAME /panasas/scratch/grp-alexeyak/brendan/w_Mohammad/Libra_cp2k_project_repository/Project_Libra_CP2K/Cd33Se33/step2/POTENTIAL
+    BASIS_SET_FILE_NAME ../../BASIS_MOLOPT
+    POTENTIAL_FILE_NAME ../../POTENTIAL
     WFN_RESTART_FILE_NAME RESTART.wfn
 
     &MGRID
@@ -84,6 +84,10 @@
     &XC
       &XC_FUNCTIONAL PBE
       &END XC_FUNCTIONAL
+      ! Use this if you are using other versions of CP2K lower than version 7.
+      !&XC_GRID
+      !  XC_DERIV SPLINE2_SMOOTH
+      !&END XC_GRID
     &END XC
   &END DFT
   &SUBSYS
