@@ -12,4 +12,4 @@ Executing CP2K is dependent on the compiled version. You need to load it through
 
 Here is an example of how to run the MD. The following can be added to your pbs/slurm file for submission:
 
-`mpirun -np 16 cp2k.popt -i cp2k_MD_Cd33Se33.inp -o output_cp2k_MD_Cd33Se33.log`
+`mpirun -np 16 cp2k.popt -i cp2k_MD_Si75H64.inp -o output_cp2k_MD_Si75H64.log`
