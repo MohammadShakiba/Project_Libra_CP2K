@@ -30,7 +30,7 @@ fi
 export OMP_NUM_THREADS=$omp_threads
 
 nprocs=32
-path=`pwd`
+path=/panasas/scratch/grp-alexeyak/brendan/w_Mohammad/Libra_cp2k_project_repository/Project_Libra_CP2K/Cd33Se33/step2
 cp2k_exe=/panasas/scratch/grp-alexeyak/brendan/cp2k_install/cp2k-7.1/exe/local/cp2k.popt
 res=$path/res
 MO_images_directory=$path/MO_images_directory
