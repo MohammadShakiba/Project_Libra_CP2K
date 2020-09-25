@@ -63,7 +63,7 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 `tolerance`: The tolerance factor will consider the excited states which the square of their configuration interaction coefficient is larger than this value.
 
-`isUKS`: If this flag is set to `**1**`, then the program will consider the unrestricted spin calculations. If it is set to other values it will consider only the spin restricted case. Please, make sure for the `UKS .TRUE.` in the `cp2k_input_template.inp` if you have set this variable to `**1**`.
+`isUKS`: If this flag is set to **`1`**, then the program will consider the unrestricted spin calculations. If it is set to other values it will consider only the spin restricted case. Please, make sure for the `UKS .TRUE.` in the `cp2k_input_template.inp` if you have set this variable to `**1**`.
 
 `min_band`: The minimum state index of the KS states. This will take the above value as `$min_band`.
 
