@@ -95,7 +95,7 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 `states_to_be_plotted`: The states to be plotted which is defined as `$states_to_be_plotted`.
 
-`MO_images_directory`: The path to store the images of the molecular orbitals plotted by VMD.
+`MO_images_directory`: The path to store the images of the molecular orbitals plotted by VMD. It is defined as `$MO_images_directory` as above.
 
 Finally, we run the calculations using the `step2_many_body.run_step2_many_body( params )` for the parameters we have set into `params` dictionary variable.
 
