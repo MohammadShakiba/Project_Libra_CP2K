@@ -45,31 +45,31 @@ The standard sample bash file for submitting the calculations and running the Py
 
 Now that we have set some of the variables we need to run the Python code as `python -c`. First we need to import the function `step2_many_body` from `libra_py.workflows.nbra`. Then we have to set up some variables as a dictionary in `params`. The variables in `params` are as follows:
 
-`es_software`
+`es_software`: This defines the electronic structure calculations software name. Please, insert the software name in lower case such as `cp2k`.
 
-`es_software_input_template`
+`es_software_input_template`: The input template for the `es_software`. We recommend the use of the prepared input template as is mentioned above.
 
-`es_software_exe`
+`es_software_exe`: The executable `es_software`. This is defined above as `$cp2k_exe`. 
 
-`nprocs`
+`nprocs`: Number of processors to be used.
 
-`project_name`
+`project_name`: The project name. The cube file names is based on this variable.
 
-`trajectory_xyz_filename`
+`trajectory_xyz_filename`: The name of the trajectory `xyz` file. 
 
-`logfile_directory`
+`logfile_directory`: The directory for CP2K output log files. 
 
-`number_of_states`
+`number_of_states`: The number of excited states to be considered. This value should not be larger than `NSTATE` in `TDDFPT` section.
 
-`tolerance`
+`tolerance`: The tolerance factor will consider the excited states which the square of their configuration interaction coefficient is larger than this value.
 
-`isUKS`
+`isUKS`: If this flag is set to **1**, then the program will consider the unrestricted spin calculations. If it is set to other values it will consider only the spin restricted case. Please, make sure for the `UKS .TRUE.` in the `cp2k_input_template.inp` if you have set this variable to **1**.
 
-`min_band`
+`min_band`: The minimum state index of the KS states. This will take the above value as `$min_band`.
 
-`max_band`
+`max_band`: The maximum state index of the KS states. This will take the above value as `$max_band`.
 
-`ks_orbital_homo_index`
+`ks_orbital_homo_index`: The index of the HOMO energy level in the KS basis. This will take the above value as `$ks_orbital_homo_index`.
 
 
 
