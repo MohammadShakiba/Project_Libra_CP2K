@@ -103,5 +103,20 @@ Finally, we run the calculations using the `step2_many_body.run_step2_many_body(
 
 `run.py` file is a file which has the burden to split the trajectory into multiple smaller trajectories and then submit the `slurm` or `pbs` bash files. It starts by making the `wd` folder which is the working directory. Then it will extract the `xyz` coordinates required for each step of each job. The code will also prepare the input files for each ste for each job based on the `cp2k_input_template.inp` file. This is done in each `job` folder in the `wd`.
 
+The required inputs in the `run.py` file are as follows:
+
+`trajectory_xyz_file`: The user must specify the full path of the trajectory `xyz` file or the name of the file if it is in the current folder. 
+
+`es_software_input_template`: The input template for the electronic structure calculations. Here, the input template is `cp2k_input_template.inp` file.
+
+`es_software`: The name of the electronic structure calculations software e.g. `cp2k`.
+
+`istep`: The initial step from the _trajectory `xyz` file_. 
+
+`fstep`: The final step from the _trajectory `xyz` file_. 
+
+`njobs`: The total number of jobs that the user wants to submit. The maximum number of jobs must be less than half of the total steps i.e. `fstep-istep`.
+
+`os.system("sbatch submit_"+str(njob)+".slm")`: The jobs are submitted through this line of code at the end of the `run.py`. Please, change it according to your HPC submission platform. For example if you use `pbs` files and you use `qsub`, after preparing the `submit_template.pbs` the same as `submit_template.slm` you can change this line to `os.system("qsub submit_"+str(njob)+".pbs")`.
 
 
