@@ -115,8 +115,8 @@ The required inputs in the `run.py` file are as follows:
 
 `fstep`: The final step from the _trajectory `xyz` file_. 
 
-`njobs`: The total number of jobs that the user wants to submit. The maximum number of jobs must be less than half of the total steps i.e. `fstep-istep`.
+`njobs`: The total number of jobs that the user wants to submit. The maximum number of jobs must be less than half of the total steps i.e. `fstep-istep+1`.
 
 `os.system("sbatch submit_"+str(njob)+".slm")`: The jobs are submitted through this line of code at the end of the `run.py`. Please, change it according to your HPC submission platform. For example if you use `pbs` files and you use `qsub`, after preparing the `submit_template.pbs` the same as `submit_template.slm` you can change this line to `os.system("qsub submit_"+str(njob)+".pbs")`.
 
-
+**_Note_:** You can submit all your jobs by running only `python run.py` and the jobs will be submitted on the local node. An alternative way for submitting the jobs is through submitting the `submit.slm` which contains `python run.py`. This can be done if other nodes have the capability to perform the submission. Unless you have to use only `python run.py` on the local node or any node that has the capability for submitting the jobs.
