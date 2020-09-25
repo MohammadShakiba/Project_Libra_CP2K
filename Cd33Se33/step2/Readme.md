@@ -75,17 +75,15 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 `do_phase_corrections`: The flag to perform phase correction. If this value is set to **`1`**, the program will apply the [phase correction algorithm](https://pubs.acs.org/doi/abs/10.1021/acs.jpclett.8b02826) to the overlap matrices.
 
-`perform_state_reordering`: This flag will 
+`perform_state_reordering`: This flag will do the state tracking (reordering algorithm) if its value is set to **`1`**. There are different schemes of state reordering which can be defined by the variable `do_state_reordering`.
 
-`do_state_reordering`
+`state_reordering_alpha`: 
 
-`state_reordering_alpha`
+`istep`: The initial time step of the job to be considered. This value is set as `$job_init_step`. The program will start from the `istep` geometry in the trajectory `xyz` file.
 
-`istep`
+`nsteps_this_job`: The number of steps for the job. This value is set as `$nsteps_this_job`.
 
-`nsteps_this_job`
-
-`njob`
+`njob`: The job number which is defined as `$njob`.
 
 `res_dir`
 
