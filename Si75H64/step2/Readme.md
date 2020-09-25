@@ -21,6 +21,8 @@ The keyword `RESTART` increase the speed of calculations, both for SCF and TD-DF
 
 In the `&MO_CUBES` section the number of occupied and unoccupied orbitals must be specified. This is dependent on the TD-DFPT calculations and the user have to make a good guess to make sure that the cube files of all the states in the excitation analysis of TD-DFPT calculations exist. This guess can be obtained from running the calculations for 5-10 steps.
 
+**_Note_:** Before proceeding, unzip the silicon nanocrystal trajectory to obtain the trajectory `xyz` file.
+
 ## 2. Bash file for running the calculations for one job
 
 The standard sample bash file for submitting the calculations and running the Python code through `slurm` and `sbatch` is the `submit_template.slm`. First one should load all needed modules including the modules required for loading CP2K. This file contains the input variables required for calculations of the overlap matrices and NACs. We list the variables as follows:
