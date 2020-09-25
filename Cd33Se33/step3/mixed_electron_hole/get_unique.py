@@ -7,9 +7,9 @@ count = 0
 # For each job batch submitted
 for i in range(0,800):
 
-    os.system("mv ../../step2/wd/job"+str(i)+"/slurm* ../wd/job"+str(i)+"/slurm.out")
+    os.system("mv ../../step2/wd/job"+str(i)+"/slurm* ../../step2/wd/job"+str(i)+"/slurm.out")
 
-    filename = "../wd/job"+str(i)+"/slurm.out"
+    filename = "../../step2/wd/job"+str(i)+"/slurm.out"
     f  = open(filename)
     A  = f.readlines()
     sz = len(A)
