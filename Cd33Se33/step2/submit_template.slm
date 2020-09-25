@@ -34,6 +34,7 @@ path=/panasas/scratch/grp-alexeyak/brendan/w_Mohammad/Libra_cp2k_project_reposit
 cp2k_exe=/panasas/scratch/grp-alexeyak/brendan/cp2k_install/cp2k-7.1/exe/local/cp2k.popt
 res=$path/res
 MO_images_directory=$path/MO_images_directory
+path_to_tcl_file=$path/cube.tcl
 
 min_band=270
 max_band=310
