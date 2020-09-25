@@ -1,4 +1,4 @@
-# Step 4 - Computing the timescales by fitting the NAD results by an stretched-compressed exponential function:
+# Step 4 - Computing the timescales by fitting the NAD results by an stretched-compressed exponential function
 
 In order to fit the NAD results to an stretched-compressed exponential function we first need to define it. There are various function available but we have adjusted the working fitting code to the stretched-compressed exponential one which is defined as in `func3` in the code.
 
