@@ -64,7 +64,7 @@ Then For each initial condition that we have set up we perform NAD. For each sub
  
  Then, the NAD is run through `step4.run(hvib, params)`. Here we use the `step4.run( [ hvib_mb_subtrajs[ subtraj ] ], params)` for each sub-trajectory. The first parameter of the `step4.run` are the `Hvib`s which should be represented as a list of lists.
  
- We run the NAD through the last lines of the code. Since we have defined the NAD run for each sub-trajectory in the `myfun` function we can un it through use of multiprocessing library of Python with the command `pool.map`. First we create a pool of processors using `pool.map(nprocs)`. Then, we run the `myfun` function for a set of variables, which here are the subtrajectories and the list of variables becomes `list(range(nsubtrajs))`, using `pool.map( myfunc, list(range(nsubtrajs)) )`. Finally, after running each function is done we close the pool to stop overflow of the computing system using `pool.close()` and `pool.join()`.
+ We run the NAD through the last lines of the code. Since we have defined the NAD run for each sub-trajectory in the `myfun` function we can run it through use of multiprocessing library of Python with the command `pool.map`. First we create a pool of processors using `pool.map(nprocs)`. Then, we run the `myfun` function for a set of variables, which here are the subtrajectories and the list of variables becomes `list(range(nsubtrajs))`, using `pool.map( myfunc, list(range(nsubtrajs)) )`. Finally, after running each function is done we close the pool to stop overflow of the computing system using `pool.close()` and `pool.join()`.
  
  
  
