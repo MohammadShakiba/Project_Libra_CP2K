@@ -21,4 +21,4 @@ We first set up the paramters for reading/sorting the data. The time step is def
 After fitting, we obtain the average and the standard deviation value of all fitted data. Then, we use the margin of error for a sample proportion as is shown [here](https://barbatti.org/2018/04/18/how-many-trajectories-should-i-run/).
 
 
-The detailed results are output by `python fit.py`. One can obtain the average values and their corresponding error bars from the output using the commad `python fit.py | grep "Reading\|final"`.
+The detailed results are output by `python fit.py`. One can obtain the average values and their corresponding error bars from the output using the commad `python fit.py | grep "Reading\|final"`. Other alternatives would be to do first `python fit.py > output.log` and then using `grep` to find the needed values by `cat output.log | grep -i "Reading\|final\|beta"` which `-i` is for case insensitive while using `grep`.
