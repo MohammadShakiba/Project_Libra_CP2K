@@ -6,21 +6,14 @@ We first set up the paramters for reading/sorting the data. The time step is def
 
 `basis_options`: This list includes the dynamic basis. Here we have `sd` and `mb`. In fact, these are defined in the `namd.py` when outputting the NAD results.
 
-`decoherence_options`: This list includes the decoherence options which were also done in the `namd.py`. The list input will be used to  ["fssh","ida", "msdm"]#, "dish"]
+`decoherence_options`: This list includes the decoherence options which were also done in the `namd.py`. The list input will be used to identify the NAD output files. For example we have used the following decoherence option in the `namd.py`: `fssh`, `ida`, `msdm`
 
-decoherence_options_names = ["FSSH","ID-A","mSDM"]
+`decoherence_options_names`: The names of the decoherence options used for plotting (the names will be set as titles).
 
-fit_options = [3]
+`dynamics_option`: This variable defines for the fit function to be applied for which state population. There are different options here: **`0`** yields the hot energy decay timescales, **`1`** yields the recovery timescales, and **`2`** is for recombination timescales. For the recovery timescales, we need to define the recovery of which states to be considered. Here, we consider the recovery of the lowest excited states for CdSe NC. The user can define lowest two or three excited states by subtracting the population of those states as well. For example, the `y = 1.0 - ( float( namd_data_line[ 6 ] ) )` in the code defines the recovery of the first excited states. One can obtain the recovery of the first two excited states by `y = 1.0 - ( float( namd_data_line[ 6 ] ) - float( namd_data_line[ 9 ] ) )` in which `float( namd_data_line[ 6 ] )` shows the population of the first excited state and `float( namd_data_line[ 9 ] )` shows the population of the second excited state in the NAD out files.
 
-# 0 = "Hot_energy decay"
-# 1 = "Recovery"
-# 2 = "Recombination"
-dynamics_option = 1
+`nsubtrajs`: The number of sub-trajectories. This is needed because we want to obtain the total average of the timescales as well.
 
-nsubtrajs = 21
-# lower: sd, mb
-#istates = [ [5,6,7,8], [5,6,7,8] ]
-# upper: sd, mb
-istates = [ [14,15,16,17,18], [14,15,16,17,18] ]
+`istates`: The initial excited states as in the `namd.py` file. This input is also required to identify the output files by NAD calculations.
 
-r_squared_tol = 0.8
+`r_squared_tol`: Here we only consider the fits that have an $R^2$ factor of larger than a specific value. This value is defined by `r_squared_tol`.
