@@ -85,18 +85,18 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 `njob`: The job number which is defined as `$njob`.
 
-`res_dir`
+`res_dir`: The `res` directory for storing the energies, overlap matrices and NACs. It is defined as `$res`.
 
-`dt`
+`dt`: The time step used in the MD in **_atomic units_**. 
 
-`do_cube_visualization`
+`do_cube_visualization`: If this flag is set to **`1`** the program will call VMD to plot the cube files. If you set this variable to **`1`**, pleae make sure to load VMD through `module load` or add the executable path to the `PATH` variable like `export PATH=/full/path/to/vmd/folder:$PATH`.
 
-`path_to_tcl_file`
+`path_to_tcl_file`: The full path to `tcl` file as the input of VMD. This variable is defined with `$path_to_tcl_file` as above.
 
-`states_to_be_plotted`
+`states_to_be_plotted`: The states to be plotted which is defined as `$states_to_be_plotted`.
 
-`MO_images_directory`
+`MO_images_directory`: The path to store the images of the molecular orbitals plotted by VMD.
 
-`step2_many_body.run_step2_many_body( params )`
+Finally, we run the calculations using the `step2_many_body.run_step2_many_body( params )` for the parameters we have set into `params` dictionary variable.
 
 
