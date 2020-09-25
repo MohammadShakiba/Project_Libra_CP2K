@@ -99,9 +99,9 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 Finally, we run the calculations using the `step2_many_body.run_step2_many_body( params )` for the parameters we have set into `params` dictionary variable.
 
-## 3. Split the trajectory into smaller ones and spread them using `run.py`
+## 3. Run all the jobs through `run.py`
 
-
+`run.py` file is a file which has the burden to split the trajectory into multiple smaller trajectories and then submit the `slurm` or `pbs` bash files. It starts by making the `wd` folder which is the working directory. Then it will extract the `xyz` coordinates required for each step of each job. The code will also prepare the input files for each ste for each job based on the `cp2k_input_template.inp` file. This is done in each `job` folder in the `wd`.
 
 
 
