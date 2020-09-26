@@ -55,7 +55,7 @@ params[\"es_software_exe\"]=\"$cp2k_exe\"
 params[\"nprocs\"]=\"$nprocs\"
 
 params[\"project_name\"]=\"si75h64\"
-params[\"trajectory_xyz_filename\"]=\"Si78H64-300-pos-1.xyz\"
+params[\"trajectory_xyz_filename\"]=\"Si75H64-300-pos-1.xyz\"
 params[\"logfile_directory\"]=\"logfiles\"
 params[\"number_of_states\"]=50
 params[\"tolerance\"]=0.05
