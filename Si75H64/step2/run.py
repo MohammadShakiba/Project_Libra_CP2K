@@ -21,7 +21,7 @@ os.system("rm -r res")
 os.mkdir('res')
 
 ######################### creating and submitting jobs #########################
-trajectory_xyz_file        = "Si78H64-300-pos-1.xyz"
+trajectory_xyz_file        = "Si75H64-300-pos-1.xyz"
 es_software_input_template = "cp2k_input_template.inp"
 es_software = "cp2k"
 istep = 2000
