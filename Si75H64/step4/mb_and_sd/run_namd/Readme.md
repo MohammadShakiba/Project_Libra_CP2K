@@ -67,7 +67,7 @@ Then For each initial condition that we have set up we perform NAD. For each sub
  We run the NAD through the last lines of the code. Since we have defined the NAD run for each sub-trajectory in the `myfun` function we can run it through use of multiprocessing library of Python with the command `pool.map`. First we create a pool of processors using `pool.map(nprocs)`. Note that the number of processor is optimized to be the same as the number of sub-trajectories. Then, we run the `myfun` function for a set of variables, which here are the subtrajectories and the list of variables becomes `list(range(nsubtrajs))`, using `pool.map( myfunc, list(range(nsubtrajs)) )`. Finally, after running each function is done we close the pool to stop overflow of the computing system using `pool.close()` and `pool.join()`.
  
  
- 
+**_NOTE_:** - Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs. 
  
  
  
