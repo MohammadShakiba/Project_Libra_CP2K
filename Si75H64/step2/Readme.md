@@ -122,3 +122,6 @@ The required inputs in the `run.py` file are as follows:
 `os.system("sbatch submit_"+str(njob)+".slm")`: The jobs are submitted through this line of code at the end of the `run.py`. Please, change it according to your HPC submission platform. For example if you use `pbs` files and you use `qsub`, after preparing the `submit_template.pbs` the same as `submit_template.slm` you can change this line to `os.system("qsub submit_"+str(njob)+".pbs")`.
 
 **_Note_:** You can submit all your jobs by running only `python run.py` and the submission process of the jobs will be done on the local node. An alternative way for submitting the jobs is through submitting the `submit.slm` file which contains `python run.py`. This can be done if other nodes have the capability to perform the submission. Unless you have to use only `python run.py` on the local node or any other node that has the capability for submitting the jobs.
+
+
+**_NOTE_:** - Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs.

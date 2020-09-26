@@ -263,7 +263,7 @@ def myfunc( subtraj ):
 
 
 
-pool = mp.Pool(21)
+pool = mp.Pool(nsubtrajs)
 pool.map( myfunc, list(range(nsubtrajs)) )
 pool.close()
 pool.join()

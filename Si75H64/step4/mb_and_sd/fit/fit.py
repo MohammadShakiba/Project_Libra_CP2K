@@ -43,7 +43,7 @@ def func3(t, tau, beta, E0, B):
 
 
 # 2) Set paramters for reading / sorting the data
-dt = 1.0 #fs
+dt = 0.5 #fs
 
 basis_options = ["sd","mb"] 
 decoherence_options = ["fssh","ida", "msdm"]#, "dish"]
@@ -56,9 +56,7 @@ fit_options = [3]
 # 2 = "Recombination"
 dynamics_option = 1
 
-nsubtrajs = 21
-# lower: sd, mb
-#istates = [ [5,6,7,8], [5,6,7,8] ]
+nsubtrajs = 11
 # upper: sd, mb
 istates = [ [33,34,35], [33,34,35] ]
 
@@ -128,7 +126,7 @@ for decoherence_option in decoherence_options:
                     # Population Recovery Dynamics
                     elif dynamics_option == 1:
                         if basis_option_count == 0 or basis_option_count == 1:
-                            y = 1.0 - ( float( namd_data_line[ 6 ] ) )
+                            y = 1.0 - ( float( namd_data_line[ 6 ] ) + float( namd_data_line[ 9 ] ) )
 
                     # Ground state recovery
                     elif dynamics_option == 2:

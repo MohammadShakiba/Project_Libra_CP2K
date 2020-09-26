@@ -39,3 +39,4 @@ In the nes step we apply the state reordering as was mentioned above, followed b
 
 Now we form the vibronic Hamiltonian from the `St_sd` using the Hammes-Schiffer-Tully method.
 
+**_NOTE_:** - Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs.

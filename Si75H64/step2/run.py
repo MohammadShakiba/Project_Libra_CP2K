@@ -24,9 +24,9 @@ os.mkdir('res')
 trajectory_xyz_file        = "Si78H64-300-pos-1.xyz"
 es_software_input_template = "cp2k_input_template.inp"
 es_software = "cp2k"
-istep = 0
-fstep = 1#4000 
-njobs = 1#800
+istep = 2000
+fstep = 6000 
+njobs = 600
 for njob in range( njobs ):
 
     job_init_step, job_final_step = step2_many_body.curr_and_final_step_job( istep, fstep, njobs, njob )

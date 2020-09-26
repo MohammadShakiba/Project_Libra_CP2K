@@ -17,27 +17,27 @@ echo "SLURM_NNODES="$SLURM_NNODES
 echo "SLURMTMPDIR="$SLURMTMPDIR
 echo "working directory="$SLURM_SUBMIT_DIR
 
-#module load cuda/6.5
+module load cuda/6.5
 module load vmd
-#module load openmpi/3.0.3/gcc-7.3.0
-#export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
+module load openmpi/3.0.3/gcc-7.3.0
+export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi.so
 
-#if [ -n "$SLURM_CPUS_PER_TASK" ]; then
-#  omp_threads=$SLURM_CPUS_PER_TASK
-#else
-#  omp_threads=1
-#fi
-#export OMP_NUM_THREADS=$omp_threads
+if [ -n "$SLURM_CPUS_PER_TASK" ]; then
+  omp_threads=$SLURM_CPUS_PER_TASK
+else
+  omp_threads=1
+fi
+export OMP_NUM_THREADS=$omp_threads
 
 nprocs=32
-path=/home/390083/project_libra_cp2k/Project_Libra_CP2K/Si75H64/step2
-cp2k_exe=cp2k.psmp
+path=/panasas/scratch/grp-alexeyak/brendan/w_Mohammad/Libra_cp2k_project_repository/Project_Libra_CP2K/Cd33Se33/step2
+cp2k_exe=/panasas/scratch/grp-alexeyak/brendan/cp2k_install/cp2k-7.1/exe/local/cp2k.popt
 res=$path/res
 MO_images_directory=$path/MO_images_directory
 path_to_tcl_file=$path/cube.tcl
 
-min_band=178
-max_band=187
+min_band=163
+max_band=202
 ks_orbital_homo_index=182
 states_to_be_plotted=182
 
@@ -54,11 +54,11 @@ params[\"es_software_input_template\"]=\"cp2k_input_template.inp\"
 params[\"es_software_exe\"]=\"$cp2k_exe\"
 params[\"nprocs\"]=\"$nprocs\"
 
-params[\"project_name\"]=\"cd33se33\"
+params[\"project_name\"]=\"si75h64\"
 params[\"trajectory_xyz_filename\"]=\"Si78H64-300-pos-1.xyz\"
 params[\"logfile_directory\"]=\"logfiles\"
-params[\"number_of_states\"]=5
-params[\"tolerance\"]=0.01
+params[\"number_of_states\"]=50
+params[\"tolerance\"]=0.05
 
 params[\"isUKS\"]=0
 params[\"min_band\"]=int(\"$min_band\")
