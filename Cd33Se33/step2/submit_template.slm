@@ -30,7 +30,7 @@ fi
 export OMP_NUM_THREADS=$omp_threads
 
 nprocs=32
-path=/panasas/scratch/grp-alexeyak/brendan/w_Mohammad/Libra_cp2k_project_repository/Project_Libra_CP2K/Cd33Se33/step2
+path=/panasas/scratch/grp-alexeyak/brendan/w_Mohammad/updates/Project_Libra_CP2K/Cd33Se33/step2
 cp2k_exe=/panasas/scratch/grp-alexeyak/brendan/cp2k_install/cp2k-7.1/exe/local/cp2k.popt
 res=$path/res
 MO_images_directory=$path/MO_images_directory
@@ -58,7 +58,7 @@ params[\"project_name\"]=\"cd33se33\"
 params[\"trajectory_xyz_filename\"]=\"cd33se33_md.xyz\"
 params[\"logfile_directory\"]=\"logfiles\"
 params[\"number_of_states\"]=30
-params[\"tolerance\"]=0.01
+params[\"tolerance\"]=0.0
 
 params[\"isUKS\"]=0
 params[\"min_band\"]=int(\"$min_band\")
@@ -69,7 +69,6 @@ params[\"ks_orbital_homo_index\"]=\"$ks_orbital_homo_index\"
 params[\"completion_level\"]=0
 
 params[\"do_phase_corrections\"]=1
-
 params[\"perform_state_reordering\"]=1
 params[\"do_state_reordering\"]=2
 params[\"state_reordering_alpha\"]=0.0
