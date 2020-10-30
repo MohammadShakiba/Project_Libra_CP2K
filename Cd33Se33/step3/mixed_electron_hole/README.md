@@ -14,11 +14,11 @@ We first start by reading the files that have the energies and time-overlap matr
 
 `finish_time`: The final time step plus one (`+1`).
 
-After setting up the `params` variable we start reading the data for both KS energies and overlaps using `data_read.get_data_sets(params)`.
+After setting up the `params` variable we start reading the data for both KS energies and overlaps using `data_read.get_data_sets(params)`. We recommend to set finish_time to 2 and to uncomment the sys.exit(0) after the St_ks section in order to test the reading of the KS data. If matricies containing all zeros prints to the screen, the reading of the data was not done correctly. 
 
 ## 2. Obtain the excitation energies and ci coefficients or all timesteps
 Make a directory called "all_logfiles" and then run the following command: 
-`for file in $(find ../step2/wd -name '*.log'); do cp $file all_logfiles/.; echo $file; done`
+`for file in $(find ../../step2/wd -name '*.log'); do cp $file all_logfiles/.; echo $file; done`
 Please note, that you must provide the path to the wd directory in the step2 calculations after the `find` command
 
 ## 3. Process the unique SD bases, which involves the following
@@ -40,4 +40,4 @@ the SD basis (Hvib, overlaps) is output at the end as well
 
 **_NOTE_:** - Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs.
 Also, this script is quite "raw" and is a result of the "brand-new: nature of the NAMD in MB basis feature. In subsuent versions of Libra, it is possible than many aspect of this script will be refined
-and placed into either libra_py or the Libra's core modules. 
+and placed into either libra_py or the Libra's core modules. Also, due to the large number of files processed and potentially large number of electrons in the SDs, it is possible this script may take several hours. It is recommend to submit this file for computation. The file is currently parallelized with 24 processors via mp.pool(). 

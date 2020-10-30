@@ -24,11 +24,11 @@ import matplotlib.pyplot as plt
 ###############
 # 1. Read the files that have the energies and time-overlap matricies in the Kohn-Sham basis, E_ks and St_ks.
 path = os.getcwd()
-res_dir = path+"/../../res/"
+res_dir = path+"/../../step2/res/"
 data_dim = 82 # rows in E_ks
 active_space = range(data_dim)
 start_time   = 0   
-finish_time  = 4001   
+finish_time  = 2#4001   
 dt = 1.0*units.fs2au
 params = { "data_set_paths" : [res_dir], "data_dim":data_dim, "active_space":active_space, "isnap":start_time,  "fsnap":finish_time }
 # Fetching E_ks
@@ -41,8 +41,9 @@ E_ks[0][-1].show_matrix()
 params.update({ "data_re_prefix" : "St_ks_", "data_re_suffix" : "_re", "data_im_prefix" : "St_ks_", "data_im_suffix" : "_im"  } )
 St_ks = data_read.get_data_sets(params)
 print ("\n")
-St_ks[0][-1].show_matrix()
+St_ks[0][-2].show_matrix()
 #sys.exit(0)
+
 
 
 
@@ -122,7 +123,7 @@ step3.apply_phase_correction_general( St_sd )
 # 4. Form Hvib_sd
 Hvib_sd = []
 for step in range(finish_time-start_time-1):
-    hvib_sd = E_sd[step] + 0.5j/dt * (St_sd[step] - St_sd[step].H())
+    hvib_sd = E_sd[step] - 0.5j/dt * (St_sd[step] - St_sd[step].H())
     Hvib_sd.append( hvib_sd )
     Hvib_sd[step].real().show_matrix("%s/Hvib_sd_%d_re" % (res_dir_sd, step))
     Hvib_sd[step].imag().show_matrix("%s/Hvib_sd_%d_im" % (res_dir_sd, step))

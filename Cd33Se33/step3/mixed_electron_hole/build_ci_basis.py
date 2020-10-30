@@ -318,7 +318,7 @@ for step in range( finish_time-start_time-1 ):
     St_ci_job.append( st_ci )
 
 #print("\nNormalize CI basis before output")
-apply_normalization_general( S_ci_job, St_ci_job )
+step3.apply_orthonormalization_general( S_ci_job, St_ci_job )
 params2 = {"do_state_reordering":2, "state_reordering_alpha":0}
 step3.apply_state_reordering_general( St_ci_job, ci_midpoint_energies, params2 )
 step3.apply_phase_correction_general( St_ci_job )
@@ -353,7 +353,7 @@ for step in range( finish_time-start_time-1 ):
     sd_midpoint_energies.append( sd_midpoint_energy )
 
 #print("\nNormalize SD basis before output")
-apply_normalization_general( S_sd_job, St_sd_job )
+step3.apply_orthonormalization_general( S_sd_job, St_sd_job )
 params2 = {"do_state_reordering":2, "state_reordering_alpha":0}
 step3.apply_state_reordering_general( St_sd_job, sd_midpoint_energies, params2 )
 step3.apply_phase_correction_general( St_sd_job )
