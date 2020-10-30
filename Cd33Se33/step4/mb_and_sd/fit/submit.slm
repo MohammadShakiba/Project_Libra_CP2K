@@ -14,14 +14,8 @@ echo "SLURM_NNODES="$SLURM_NNODES
 echo "SLURMTMPDIR="$SLURMTMPDIR
 echo "working directory="$SLURM_SUBMIT_DIR
 
-#python fit.py | grep "final\|Number of" > o_cd33se33_more_iconds_hot_energy_0p6eV.txt
-#python fit.py | grep "final\|Number of" > o_cd33se33_more_iconds_hot_energy_0p3eV.txt
-#python fit.py | grep "final\|Number of" > o_cd33se33_more_iconds_recovery_0p3eV.txt
-
-
-#python fit.py > o_cd33se33_more_iconds_hot_energy_0p3eV.txt
-#python fit.py > o_cd33se33_more_iconds_recovery_0p3eV.txt
-#python fit.py > o_cd33se33_more_iconds_hot_energy_0p5eV.txt
-python fit.py > o_cd33se33_more_iconds_recovery_0p5eV.txt
+python fit_template.py > outfile_cd33se33_hot_energy.txt
+#python fit_template.py > outfile_cd33se33_recovery.txt
+#python fit_template.py > outfile_cd33se33_recovery_full.txt
 
 
