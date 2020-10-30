@@ -22,21 +22,21 @@ Make a directory called "all_logfiles" and then run the following command:
 Please note, that you must provide the path to the wd directory in the step2 calculations after the `find` command
 
 ## 3. Process the unique SD bases, which involves the following
-     3.1. Reindexing the SD bases from the native ES format to what Libra expects
-     3.2. Sorting the SD bases at each timestep by their energies 
+3.1. Reindexing the SD bases from the native ES format to what Libra expects
+3.2. Sorting the SD bases at each timestep by their energies 
 
-     Note: The way in which SD states are to be written has been reformulated in the most recent versions of Libra. To reproduce the results of this study, one needs to set
-     the input parameter do_sort=True in the funciton sd2indx in the file $path/libra_py/workflows/nbra/mapping.py and express the SDs in the following form:
-     [ all alpha orbtials, all beta orbitals ], where the alpha and beta orbtials correspond to row or column elements (from 1) of the spin-block matrix in the KS absis. Beta electrons shall have a
-     negative sign in fron of them. Ex) For 10 alpha and 10 beta orbitals, with HOMO = 5 (from 1), the GS will be [ 1, 2, 3, 4, 5, -10, -11, -12, -13, -14 ]
+Note: The way in which SD states are to be written has been reformulated in the most recent versions of Libra. To reproduce the results of this study, one needs to set
+the input parameter do_sort=True in the funciton sd2indx in the file $path/libra_py/workflows/nbra/mapping.py and express the SDs in the following form:
+[ all alpha orbtials, all beta orbitals ], where the alpha and beta orbtials correspond to row or column elements (from 1) of the spin-block matrix in the KS absis. Beta electrons shall have a
+negative sign in fron of them. Ex) For 10 alpha and 10 beta orbitals, with HOMO = 5 (from 1), the GS will be [ 1, 2, 3, 4, 5, -10, -11, -12, -13, -14 ]
 
 ## 4. We need to make the linear transformation matrices. This involes:
-     4.1. Make the list of ci_coefficients for each step in the way Libra accepts
-     4.2. Making the T matrix from this list keeping in mind the SD bases
+4.1. Make the list of ci_coefficients for each step in the way Libra accepts
+4.2. Making the T matrix from this list keeping in mind the SD bases
 
 ## 5. Use the SD to CI transformation matrices to convert from St_sd -> St_ci
-      We also need to make the CI energy matrix from the excitation energies and finally make the Hvib in the CI basis
-      the SD basis (Hvib, overlaps) is output at the end as well     
+We also need to make the CI energy matrix from the excitation energies and finally make the Hvib in the CI basis
+the SD basis (Hvib, overlaps) is output at the end as well     
 
 **_NOTE_:** - Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs.
 Also, this script is quite "raw" and is a result of the "brand-new: nature of the NAMD in MB basis feature. In subsuent versions of Libra, it is possible than many aspect of this script will be refined
