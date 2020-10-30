@@ -1,4 +1,4 @@
-# Step2 - Compute the overlap matrices and energies in the Kohn-Sham and perform TD-DFT calculations
+# Step2 - Compute the overlap matrices and energies in the Kohn-Sham basis and perform TD-DFT calculations along the precomputed nuclear trajectories
 
 ## 1. CP2K input for electronic structure calculations
 
@@ -8,11 +8,9 @@ This file is a template of a cp2k input file and is used to compute the electron
 
 In the section FORCE_EVAL < PROPERTIES, is the input needed to compute TD-DFT calculations. If one wishes to compute only KS properties (overlaps, energies) one can delete this section. One would also need to set completion_level = 0 in the file submit_template.slm
 
-If the user needs to change the input based on thier needs the changes should be done to this input file. One must make sure that the cube files can be produced via WRITE_CUBE .TRUE. 
+If the user needs to change the cp2k input, the changes should be done to this input file. One must make sure that the cube files can be produced via WRITE_CUBE .TRUE. 
 
 Other required files for running the CP2K input file are basis set and pseudopotential files or any other files required to run the calculations, such as `dftd3.dat`. The full path to these files in the `cp2k_input_template.inp` file shoud be specified.
-
-For `TDDFPT` section the number of excited states are specified. Higher number of excited states needs higher computational cost.
 
 [CP2K paper](https://aip.scitation.org/doi/pdf/10.1063/5.0007045)
 
@@ -122,7 +120,10 @@ The required inputs in the `run.py` file are as follows:
 
 `os.system("sbatch submit_"+str(njob)+".slm")`: The jobs are submitted through this line of code at the end of the `run.py`. Please, change it according to your HPC submission platform. For example if you use `pbs` files and you use `qsub`, after preparing the `submit_template.pbs` the same as `submit_template.slm` you can change this line to `os.system("qsub submit_"+str(njob)+".pbs")`.
 
-**_Note_:** You can submit all your jobs by running only `python run.py` and the submission process of the jobs will be done on the local node. An alternative way for submitting the jobs is through submitting the `submit.slm` file which contains `python run.py`. This can be done if other nodes have the capability to perform the submission. Unless you have to use only `python run.py` on the local node or any other node that has the capability for submitting the jobs.
-
+**_Note_:** You can submit all your jobs by running only `python run.py` and the submission process of the jobs will be done on the local node. An alternative way for submitting the jobs is through submitting the `submit.slm` file which contains `python run.py`. This can be done if other nodes have the capability to perform the submission. Unless you have to use only `python run.py` on the local node or any other node that has the capability for submitting the jobs. Please also note that the current set up submits 800 jobs. To test the workflow it is advised to first set the following variables:
+istep = 0
+fstep = 1
+njobs = 1
+This way, the user can test the software for the first two steps to debug for potential errors in input, etc.  
 
 **_NOTE_:** - Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs
