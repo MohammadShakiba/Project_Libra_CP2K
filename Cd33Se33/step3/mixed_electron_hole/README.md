@@ -14,30 +14,32 @@ We first start by reading the files that have the energies and time-overlap matr
 
 `finish_time`: The final time step plus one (`+1`).
 
-After setting up the `params` variable we start reading the data for both KS energies and overlaps using `data_read.get_data_sets(params)`. We recommend to set finish_time to 2 and to uncomment the sys.exit(0) after the St_ks section in order to test the reading of the KS data. If matricies containing all zeros prints to the screen, the reading of the data was not done correctly. 
+After setting up the `params` variable we start reading the data for both KS energies and overlaps using `data_read.get_data_sets(params)`. We recommend to set finish_time to 2 and to uncomment the `sys.exit(0)` after the St_ks section in order to test the reading of the KS data. If matricies containing all zeros prints to the screen, the reading of the data was not done correctly. 
 
 ## 2. Obtain the excitation energies and ci coefficients or all timesteps
 Make a directory called "all_logfiles" and then run the following command: 
 `for file in $(find ../../step2/wd -name '*.log'); do cp $file all_logfiles/.; echo $file; done`
-Please note, that you must provide the path to the wd directory in the step2 calculations after the `find` command
+Please note, that you must provide the path to the `wd` directory in the step2 calculations after the `find` command
 
 ## 3. Process the unique SD bases, which involves the following
 3.1. Reindexing the SD bases from the native ES format to what Libra expects
+
 3.2. Sorting the SD bases at each timestep by their energies 
 
 Note: The way in which SD states are to be written has been reformulated in the most recent versions of Libra. To reproduce the results of this study, one needs to set
-the input parameter do_sort=True in the funciton sd2indx in the file $path/libra_py/workflows/nbra/mapping.py and express the SDs in the following form:
-[ all alpha orbtials, all beta orbitals ], where the alpha and beta orbtials correspond to row or column elements (from 1) of the spin-block matrix in the KS absis. Beta electrons shall have a
-negative sign in fron of them. Ex) For 10 alpha and 10 beta orbitals, with HOMO = 5 (from 1), the GS will be [ 1, 2, 3, 4, 5, -10, -11, -12, -13, -14 ]
+the input parameter do_sort=True in the funciton `sd2indx` in the file `$path/libra_py/workflows/nbra/mapping.py` and express the SDs in the following form:
+[ _all alpha orbtials_, _all beta orbitals_ ], where the alpha and beta orbtials correspond to row or column elements (from 1) of the spin-block matrix in the KS basis. Beta electrons shall have a
+negative sign in front of them. Ex) For 10 alpha and 10 beta orbitals, with HOMO = 5 (from 1), the GS will be [ 1, 2, 3, 4, 5, -10, -11, -12, -13, -14 ]
 
 ## 4. We need to make the linear transformation matrices. This involes:
 4.1. Make the list of ci_coefficients for each step in the way Libra accepts
+
 4.2. Making the T matrix from this list keeping in mind the SD bases
 
 ## 5. Use the SD to CI transformation matrices to convert from St_sd -> St_ci
 We also need to make the CI energy matrix from the excitation energies and finally make the Hvib in the CI basis
 the SD basis (Hvib, overlaps) is output at the end as well     
 
-**_NOTE_:** - Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs.
-Also, this script is quite "raw" and is a result of the "brand-new: nature of the NAMD in MB basis feature. In subsuent versions of Libra, it is possible than many aspect of this script will be refined
-and placed into either libra_py or the Libra's core modules. Also, due to the large number of files processed and potentially large number of electrons in the SDs, it is possible this script may take several hours. It is recommend to submit this file for computation. The file is currently parallelized with 24 processors via mp.pool(). 
+**_NOTE_:** Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs.
+Also, this script is quite "raw" and is a result of the "brand-new" nature of the NAMD in MB basis feature. In subsuent versions of Libra, it is possible than many aspect of this script will be refined
+and placed into either libra_py or the Libra's core modules. Also, due to the large number of files processed and potentially large number of electrons in the SDs, it is possible this script may take several hours. It is recommend to submit this file for computation. The file is currently parallelized with 24 processors via `mp.pool()`. 
