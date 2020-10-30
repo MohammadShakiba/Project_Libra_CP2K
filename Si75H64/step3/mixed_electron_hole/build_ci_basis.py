@@ -25,7 +25,7 @@ import multiprocessing as mp
 #######################################################################################
 # 1. Read the files that have the energies and time-overlap matricies in the Kohn-Sham basis, E_ks and St_ks.
 path = os.getcwd()
-res_dir_mb = path+"/get_ks_data/res/"
+res_dir_mb = path+"/../../step2//res/"
 data_dim = 102 # rows in E_ks
 active_space = range(data_dim)
 start_time   = 2000  # initial step

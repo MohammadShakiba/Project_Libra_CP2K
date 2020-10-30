@@ -1,6 +1,6 @@
 # Ab initio Molecular Dynamics with CP2K
 
-The files herre contain the inputs required to run the molecular dynamics (MD) in CP2K. This input runs MD for 4000 steps with a time step of 1 fs and a time constant of 16 fs for (CdSe)33 nanocrystal.
+The files here contain the inputs required to run the molecular dynamics (MD) in CP2K. This input runs MD for 4000 steps with a time step of 1 fs and a time constant of 16 fs for (CdSe)33 nanocrystal.
 
 `BASIS_MOLOPT` file contains the basis set.
 `POTENTIAL` file contains the pseudopotentials for each element.
