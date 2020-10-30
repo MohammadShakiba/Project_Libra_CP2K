@@ -1,27 +1,26 @@
-# Step2 - Computing the overlap matrices and nonadiabatic couplings in Kohn-Sham and TD-DFT level of theory
-
-In order to compute the nonadiabatic couplings (NACs) in Kohn-Sham (KS) and TD-DFT level of theory we need follow these steps:
+# Step2 - Compute the overlap matrices and energies in the Kohn-Sham and perform TD-DFT calculations
 
 ## 1. CP2K input for electronic structure calculations
 
 `cp2k_input_template.inp`
 
-This input is a template to compute the electronic structure with the `RUN_TYPE ENERGY`. The input should be able to compute the TD-DFT calculations, producing the cube files
-and PDOS files. We recommend the use of the above input template and if the user needs to change the input based on his/her needs it is better to perform the changes on this input file. One should make sure about the production of the cube files and performing the TD-DFT calculations.
+This file is a template of a cp2k input file and is used to compute the electronic structure of the system along the precomputed nuclear trajectory. SCF calculations are called with the parameter `RUN_TYPE ENERGY`. 
+
+In the section FORCE_EVAL < PROPERTIES, is the input needed to compute TD-DFT calculations. If one wishes to compute only KS properties (overlaps, energies) one can delete this section. One would also need to set completion_level = 0 in the file submit_template.slm
+
+If the user needs to change the input based on thier needs the changes should be done to this input file. One must make sure that the cube files can be produced via WRITE_CUBE .TRUE. 
 
 Other required files for running the CP2K input file are basis set and pseudopotential files or any other files required to run the calculations, such as `dftd3.dat`. The full path to these files in the `cp2k_input_template.inp` file shoud be specified.
 
-For `TDDFPT` section the number of excited states are specified. Higher number of excited states needs higher computational cost, and also one needs to specify the cube files to be printed for higher number of KS states. For more information about TD-DFPT calculations please refer to the following links:
+For `TDDFPT` section the number of excited states are specified. Higher number of excited states needs higher computational cost.
 
 [CP2K paper](https://aip.scitation.org/doi/pdf/10.1063/5.0007045)
 
 [Difference between TD-DFT and TD-DFPT](https://groups.google.com/g/cp2k/c/xj8udnSyeEI)
 
-The keyword `RESTART` increase the speed of calculations, both for SCF and TD-DFPT calculations. Therefore, the `RESTART` is required to be set to `.TRUE.` in `TDDFPT` section. Also, the `WFN_RESTART_FILE_NAME` in this section should exist with a random `tdwfn` file name. The same is also needed in the `FORCE_EVAL` section. `WFN_RESTRAT_FILE_NAME` should exist in the input with an random `wfn` file name. 
+The keyword `RESTART` increases the speed of calculations, both for SCF and TD-DFPT calculations. Therefore, the `RESTART` is required to be set to `.TRUE.` in `TDDFPT` section. Also, the `WFN_RESTART_FILE_NAME` in this section should exist with a random `tdwfn` file name. The same is also needed in the `FORCE_EVAL` section. `WFN_RESTRAT_FILE_NAME` should exist in the input with an random `wfn` file name. 
 
 In the `&MO_CUBES` section the number of occupied and unoccupied orbitals must be specified. This is dependent on the TD-DFPT calculations and the user have to make a good guess to make sure that the cube files of all the states in the excitation analysis of TD-DFPT calculations exist. This guess can be obtained from running the calculations for 5-10 steps.
-
-**_Note_:** Before proceeding, unzip the silicon nanocrystal trajectory to obtain the trajectory `xyz` file.
 
 ## 2. Bash file for running the calculations for one job
 
@@ -39,7 +38,7 @@ The standard sample bash file for submitting the calculations and running the Py
 
 `ks_orbital_homo_index`: The HOMO index for KS orbitals.
 
-`MO_images_directory`: The directory where the molecular orbital isosurfaces images are stored.
+`MO_images_directory`: The directory where the molecular orbital isosurfaces images are stored. Not used in the current computations
 
 `path_to_tcl_file`: The path to the `tcl` file for plotting the cube files. This file is fed to VMD for plotting the cube files. The file can be different according to the user need. Here we have uploaded a sample file for our purpose as `cube.tcl`.
 
@@ -65,7 +64,7 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 `number_of_states`: The number of excited states to be considered. This value should not be larger than `NSTATE` in `TDDFPT` section.
 
-`tolerance`: The tolerance factor will consider the excited states which the square of their configuration interaction coefficient is larger than this value.
+`tolerance`: The tolerance factor will consider the excited states which the square of their configuration interaction coefficient is larger than this value. Set to zero here
 
 `isUKS`: If this flag is set to **`1`**, then the program will consider the unrestricted spin calculations. If it is set to other values it will consider only the spin restricted case. Please, make sure for the `UKS .TRUE.` in the `cp2k_input_template.inp` if you have set this variable to **`1`**.
 
@@ -74,6 +73,8 @@ Now that we have set some of the variables we need to run the Python code as `py
 `max_band`: The maximum state index of the KS states. This will take the above value as `$max_band`.
 
 `ks_orbital_homo_index`: The index of the HOMO energy level in the KS basis. This will take the above value as `$ks_orbital_homo_index`.
+
+`completion_level`: How much of the calculations to compute. 0 - compute KS overlaps and TDDFT calculations 1 - also compute Hvib in the MB basis. Here, we set this to zero, and create the Hvib in the MB basis in a post-process fashion. To compute only the overlaps and energies in the KS basis and not compute the TDDFT calculations, one has to turn off the option to compute TDDFT calculations in the cp2k input template
 
 `do_phase_corrections`: The flag to perform phase correction. If this value is set to **`1`**, the program will apply the [phase correction algorithm](https://pubs.acs.org/doi/abs/10.1021/acs.jpclett.8b02826) to the overlap matrices.
 
@@ -124,4 +125,4 @@ The required inputs in the `run.py` file are as follows:
 **_Note_:** You can submit all your jobs by running only `python run.py` and the submission process of the jobs will be done on the local node. An alternative way for submitting the jobs is through submitting the `submit.slm` file which contains `python run.py`. This can be done if other nodes have the capability to perform the submission. Unless you have to use only `python run.py` on the local node or any other node that has the capability for submitting the jobs.
 
 
-**_NOTE_:** - Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs.
+**_NOTE_:** - Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs
