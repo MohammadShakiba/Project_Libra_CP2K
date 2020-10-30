@@ -66,6 +66,8 @@ params[\"max_band\"]=\"$max_band\"
 
 params[\"ks_orbital_homo_index\"]=\"$ks_orbital_homo_index\"
 
+params[\"completion_level\"]=0
+
 params[\"do_phase_corrections\"]=1
 
 params[\"perform_state_reordering\"]=1

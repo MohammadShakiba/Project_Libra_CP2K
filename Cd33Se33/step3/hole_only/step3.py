@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 ###############
 # 1. Read the files that have the energies and time-overlap matricies in the Kohn-Sham basis, E_ks and St_ks.
 path = os.getcwd()
-res_dir = path+"/../../res/"
+res_dir = path+"/../../step2/res/"
 data_dim = 82 # rows in E_ks
 active_space = range(data_dim)
 start_time   = 0   
