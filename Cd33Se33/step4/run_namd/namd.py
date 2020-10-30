@@ -60,7 +60,7 @@ print ("\nGathering data from MD ")
 absolute_path = os.getcwd()
 params = {}
 params["data_set_paths"] = []
-params["data_set_paths"].append(absolute_path+"/../res_elec_sd/")
+params["data_set_paths"].append(absolute_path+"/../../step3/res")
 params["Hvib_re_prefix"] = "Hvib_sd_"; params["Hvib_re_suffix"] = "_re"
 params["Hvib_im_prefix"] = "Hvib_sd_"; params["Hvib_im_suffix"] = "_im"
 params["nfiles"]         = 4000
@@ -77,7 +77,7 @@ print ("\nGathering data from MD ")
 absolute_path = os.getcwd()
 params = {}
 params["data_set_paths"] = []
-params["data_set_paths"].append(absolute_path+"/../res_hole_sd/")
+params["data_set_paths"].append(absolute_path+"/../../step3/res/")
 params["Hvib_re_prefix"] = "Hvib_sd_"; params["Hvib_re_suffix"] = "_re"
 params["Hvib_im_prefix"] = "Hvib_sd_"; params["Hvib_im_suffix"] = "_im"
 params["nfiles"]         = 4000

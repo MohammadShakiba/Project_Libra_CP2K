@@ -1,10 +1,10 @@
 # Step 4 - Running nonadiabatic molecular dynamics
 
-In this step we run the nonadiabatic dynamics (NAD) for the systems in the many-body (MB) and single-particle (SP) basis. The input file for NAD is prepared in `namd.py` file which is parallelized for the initial condiotns to increase the speed of calculations. 
+In this step we run nonadiabatic dynamics (NAD) for the systems in each of the four considered bases. The NAD is run via using the `namd.py` file, which is parallelized for the initial times to increase the speed of calculations. 
 
 ## 1. Reading the vibronic Hamiltonian files, the `Hvib` files
 
-We first start by reading the vibronic Hamiltonians which are stored in the `res` directory. We first set up the required parameters into a dictionary called `params`. The variables needed for `params` are as follwos:
+We first start by reading the vibronic Hamiltonians for each basis which are stored in the step3 directory. We first set up the required parameters to read such files into a dictionary called `params`. The variables needed for `params` are as follwos:
 
 `data_set_paths`: The path to `res` directory.
 
@@ -16,7 +16,7 @@ We first start by reading the vibronic Hamiltonians which are stored in the `res
 
 `nstates`: The number of states to be considered.
 
-`init_times`: The initial time step to start reading the files.
+`init_times`: The initial time step. Ex) Hvib_sd_10_re has a time step of 10 
 
 `active_space`: The active space which is defined as `list( range(params["nstates"]) )`. The indexing starts from **0**.
 
@@ -26,15 +26,14 @@ The same procedure is applied for `Hvib`s of the SD basis.
 
 ## 2. Setting up the initial conditions
 
-We first divide the trajectory up into sub-trajectories. These are to be consdiered our independent nuclear sub-trajectories. The variables for this part are defined as follows:
+We first divide the trajectory up into sub-trajectories. These are to be consdiered our nuclear sub-trajectories. The variables for this part are defined as follows:
+
+`subtraj_time_info`: list of MD trajectory indexes and initial times. Ex) [ [0, 0], [0, 250] ]
+                     0th MD trajectory, step 0 and step 250
 
 `nsubtrajs`: The number of sub-trajectories.
 
-`subtraj_len`: The length of each sub-trajectory.
-
-`start_time`: The start time for the first sub-trajectory.
-
-`subtraj_increment`: The subtrajectories increment size.
+`subtraj_len`: The length of each sub-trajectory. Ex) 2000 for [0, 250] would yield the 0th MD trajectory from step 250 to 2250
 
 `params["dt"]`: The time step in the MD in **_atomic_** units. We recommend using the `units.fs2au` which is imported by `from libra_py import units as units` at the beginning of the file.
 
@@ -54,9 +53,9 @@ Then For each initial condition that we have set up we perform NAD. For each sub
  
  `params["init_times"]`: The starting time for the dynamics in the current sub-trajectory.
  
- `params["istate"]`: The initial excited state to start from. This parameter is set with the parameter `istates` list.
+ `params["istates"]`: The initial excited state to start from. This parameter is set with the parameter `istates` list.
  
- `params["decoherence_method"]`: The decoherence method to be considered. 
+ `params["decoherence_method"]`: The decoherence method to be considered. 0) FSSH (no decoherence). 1) ID-A. 2) mSDM. 3) DISH 
  
  `params["outfile"]`: The surface hopping output.
  
