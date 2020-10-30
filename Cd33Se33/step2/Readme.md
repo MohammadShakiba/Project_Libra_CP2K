@@ -1,6 +1,4 @@
-# Step2 - Computing the overlap matrices and nonadiabatic couplings in Kohn-Sham and TD-DFT level of theory
-
-In order to compute the nonadiabatic couplings (NACs) in Kohn-Sham (KS) and TD-DFT level of theory we need follow these steps:
+# Step2 - Compute the overlap matrices and energies in the Kohn-Sham and perform TD-DFT calculations
 
 ## 1. CP2K input for electronic structure calculations
 
@@ -37,7 +35,7 @@ The standard sample bash file for submitting the calculations and running the Py
 
 `ks_orbital_homo_index`: The HOMO index for KS orbitals.
 
-`MO_images_directory`: The directory where the molecular orbital isosurfaces images are stored.
+`MO_images_directory`: The directory where the molecular orbital isosurfaces images are stored. Not used in the current computations
 
 `path_to_tcl_file`: The path to the `tcl` file for plotting the cube files. This file is fed to VMD for plotting the cube files. The file can be different according to the user need. Here we have uploaded a sample file for our purpose as `cube.tcl`.
 
@@ -63,7 +61,7 @@ Now that we have set some of the variables we need to run the Python code as `py
 
 `number_of_states`: The number of excited states to be considered. This value should not be larger than `NSTATE` in `TDDFPT` section.
 
-`tolerance`: The tolerance factor will consider the excited states which the square of their configuration interaction coefficient is larger than this value.
+`tolerance`: The tolerance factor will consider the excited states which the square of their configuration interaction coefficient is larger than this value. Set to zero here
 
 `isUKS`: If this flag is set to **`1`**, then the program will consider the unrestricted spin calculations. If it is set to other values it will consider only the spin restricted case. Please, make sure for the `UKS .TRUE.` in the `cp2k_input_template.inp` if you have set this variable to **`1`**.
 
@@ -72,6 +70,8 @@ Now that we have set some of the variables we need to run the Python code as `py
 `max_band`: The maximum state index of the KS states. This will take the above value as `$max_band`.
 
 `ks_orbital_homo_index`: The index of the HOMO energy level in the KS basis. This will take the above value as `$ks_orbital_homo_index`.
+
+`completion_level`: How much of the calculations to compute. 0 - compute KS overlaps and TDDFT calculations 1 - also compute Hvib in the MB basis. Here, we set this to zero, and create the Hvib in the CI basis in a post-process fashion. To compute only the overlaps and energies in the KS basis and not compute the TDDFT calculations, one has to turn off the option to compute TDDFT calculations in the cp2k input template
 
 `do_phase_corrections`: The flag to perform phase correction. If this value is set to **`1`**, the program will apply the [phase correction algorithm](https://pubs.acs.org/doi/abs/10.1021/acs.jpclett.8b02826) to the overlap matrices.
 
