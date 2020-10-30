@@ -152,7 +152,7 @@ for step in range( finish_time-start_time-1 ):
 
 """
 # 3.1. Reindex the SDs into the format expected by Libra
-sd_states_reindexed = step2_many_body.reindex_cp2k_sd_states( ks_orbital_homo_index, ks_orbital_indicies, sd_basis_states_unique )
+sd_states_reindexed = step2_many_body.reindex_cp2k_sd_states( ks_orbital_homo_index, ks_orbital_indicies, sd_basis_states_unique, sd_format=1 )
 #print("The reindexed Slater determinants = \n", sd_states_reindexed)
 
 # 3.2. Sort the SDs at each timestep
