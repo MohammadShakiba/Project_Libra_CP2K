@@ -8,8 +8,7 @@ import matplotlib.pyplot as plt
 
 
 
-def convolve_pdos(cp2k_log_file: str, time_step: int, sigma: float, coef: float,                  npoints: int, energy_conversion: float, angular_momentum_cols: list):
-# def convolve_pdos( params ):
+def convolve_pdos(cp2k_log_file: str, time_step: int, sigma: float, coef: float, npoints: int, energy_conversion: float, angular_momentum_cols: list):
     """
     This function reads the pdos file produced by CP2K and extract the pdos at each time step and 
     then convolve them with Gaussian functions.
@@ -28,6 +27,9 @@ def convolve_pdos(cp2k_log_file: str, time_step: int, sigma: float, coef: float,
         
         energy_conversion (float): The energy conversion unit from Hartree. For example 27.211386 is
                                    for unit conversion from Hartree to eV.
+				   
+        angular_momentum_cols (list): The angular momentum columns in the *.pdos files produced by CP2K.
+	
     Returns:
 	
         energy_grid (numpy array): The energy grid points vector.
@@ -144,7 +146,7 @@ def convolve_pdos(cp2k_log_file: str, time_step: int, sigma: float, coef: float,
 
         for i in range(0,num_levels):
             # The Guassian function
-            gaussian_fun = (coef/(sigma*np.sqrt(2.0*np.pi)))*(np.exp(-0.5*np.power(((energy_grid-float(pdos_sum[i][0])*                                    energy_conversion)/sigma),2)))
+            gaussian_fun = (coef/(sigma*np.sqrt(2.0*np.pi)))*(np.exp(-0.5*np.power(((energy_grid-float(pdos_sum[i][0])*energy_conversion)/sigma),2)))
             
             tmp_weighted_pdos = tmp_weighted_pdos + gaussian_fun * float( pdos_sum[i][j] )
         convolved_pdos.append(tmp_weighted_pdos)
@@ -155,7 +157,8 @@ def convolve_pdos(cp2k_log_file: str, time_step: int, sigma: float, coef: float,
     
     return energy_grid, convolved_pdos, homo_energy
 
-#======================================================= Main part starts from here
+
+#======================================================= Main part starts from here and we use the function above combined with multiprocessing
 
 #===================== Orbital resolved columns
 #                           Cd, total          Cd, s             Cd, p             Cd, d
@@ -184,9 +187,9 @@ outname = 'orbital'
 time_step = 0
 sigma = 0.1
 coef = 1
-npoints = 2000
+npoints = 2000 # number of points for the grid mesh vector
 energy_conversion = 27.211386 # Hartree to eV
-nprocs = 24
+nprocs = 24 # number of processors
 
 
 t1 = time.time()
@@ -221,8 +224,10 @@ for k in range(1,3):
     vars_for_pool = []
     # Find all the pdos files of an element in all_pdosfiles for the first trajectory
     DOS_files1 = glob.glob('Cd33Se33_all_pdosfiles/*k%d-1.pdos'%k)
+
     # Find all the pdos files of an element in all_pdosfiles for the second trajectory
     # DOS_files2 = glob.glob('Cd33Se33_all_pdosfiles/*k%d-1.pdos'%k)
+
     # For each of the pdos files we create the list of variables
     for DOS_file in DOS_files1:
         vars_for_pool.append((DOS_file,time_step,sigma,coef,npoints,energy_conversion,list(angular_momentum_cols[k-1])))
@@ -250,10 +255,13 @@ for k in range(1,3):
     # 2. We take the average for that by dividing by len(DOS_files)
     # 3. We append it to Total_results
     Total_results.append(dos_summation_angular/len(DOS_files1))
+    # Uncomment only if you use two trajectories
     #Total_results.append(dos_summation_angular/(len(DOS_files1)+len(DOS_files2)))
     energy_grid_ave /= len(DOS_files1)
+    # Uncomment only if you use two trajectories
     #energy_grid_ave /= (len(DOS_files1)+len(DOS_files2))
     homos_ave /= len(DOS_files1)
+    # Uncomment only if you use two trajectories
     #homos_ave /= (len(DOS_files1)+len(DOS_files2))
     
 
