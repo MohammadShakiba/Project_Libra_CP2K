@@ -63,7 +63,7 @@ The rest of the code will just plot the patial density of states first by _Total
 
 
 
-
+**_NOTE_:** We highly recommend the user to use the latest inputs used in a recent project about the role of crystal symmetry in nonadiabatic dynamics of CsPbI3 perovskite. The new inputs have better functionality and can be found in [this link](https://github.com/AkimovLab/Project_CsPbI3_MB_vs_SP).
 
 
 
