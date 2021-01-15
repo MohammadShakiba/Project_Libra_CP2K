@@ -54,6 +54,10 @@
     &QS
       EPS_DEFAULT 1.0E-12
     &END QS
+    &POISSON
+      PERIODIC NONE
+      PSOLVER MT
+    &END POISSON
     &SCF
       SCF_GUESS RESTART
       EPS_SCF 1.0E-6
