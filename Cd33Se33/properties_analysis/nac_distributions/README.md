@@ -13,3 +13,5 @@ After obtaining all of the nac values, we compute the probability density distri
 
 We then plot the probability density as a function of the bin support using matplotlib
 
+
+**_NOTE_:** We highly recommend the user to use the latest inputs used in a recent project about the role of crystal symmetry in nonadiabatic dynamics of CsPbI3 perovskite. The new inputs have better functionality and can be found in [this link](https://github.com/AkimovLab/Project_CsPbI3_MB_vs_SP).
