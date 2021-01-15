@@ -18,3 +18,6 @@ Then we need to specify the parameters as follows:
 
 The we need to find and append the names of all log files into one variable so that we can use the multiprocessing feature which is appended in the variable `logfiles`, using 
 `logfiles = glob.glob('all_logfiles/*.log')`. After that, we can take the average of the CI coefficients and plot them.
+
+
+**_NOTE_:** We highly recommend the user to use the latest inputs used in a recent project about the role of crystal symmetry in nonadiabatic dynamics of CsPbI3 perovskite. The new inputs have better functionality and can be found in [this link](https://github.com/AkimovLab/Project_CsPbI3_MB_vs_SP).
