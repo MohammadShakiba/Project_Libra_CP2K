@@ -43,3 +43,6 @@ the SD basis (Hvib, overlaps) is output at the end as well
 **_NOTE_:** Please note that the paths currently defined in these files may not be the correct paths for you. Please adjust all paths to your specific needs.
 Also, this script is quite "raw" and is a result of the "brand-new" nature of the NAMD in MB basis feature. In subsuent versions of Libra, it is possible than many aspect of this script will be refined
 and placed into either libra_py or the Libra's core modules. Also, due to the large number of files processed and potentially large number of electrons in the SDs, it is possible this script may take several hours. It is recommend to submit this file for computation. The file is currently parallelized with 24 processors via `mp.pool()`. 
+
+
+**_NOTE_:** We highly recommend the user to use the latest inputs used in a recent project about the role of crystal symmetry in nonadiabatic dynamics of CsPbI3 perovskite. The new inputs have better functionality and can be found in [this link](https://github.com/AkimovLab/Project_CsPbI3_MB_vs_SP).
